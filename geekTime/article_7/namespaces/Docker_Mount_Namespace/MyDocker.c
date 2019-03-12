@@ -34,11 +34,11 @@ int container_main(void* arg)
 	//set hostname
 	sethostname("ilovemeibao", 12);
 
-	/*重新mount proc文件系统到/proc下 */
         /*https://unix.stackexchange.com/questions/281844/why-does-child-with-mount-namespace-affect-parent-mounts*/
         mount("none", "/", NULL, MS_REC|MS_PRIVATE, NULL); // make mount point private.
 
 	//remount "/proc" to make sure the "top" and ps show container`s information
+	/*重新mount proc文件系统到/proc下 */
 	if (mount("proc", "rootfs/proc", "proc", 0 ,NULL) != 0) {
 		perror("proc");
 	}

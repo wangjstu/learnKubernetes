@@ -39,10 +39,10 @@ int container_main(void* arg)
 	printf("Container [%5d] - inside the container!\n", getpid());
 	/*http://man7.org/linux/man-pages/man2/sethostname.2.html*/
 	sethostname("ilovemeibao", 12); /*设置hostname*/
-	/*重新mount proc文件系统到/proc下 */
 	/*https://unix.stackexchange.com/questions/281844/why-does-child-with-mount-namespace-affect-parent-mounts*/
-	mount("none", "/", NULL, MS_REC|MS_PRIVATE, NULL); // make mount point private.	
 	/*http://man7.org/linux/man-pages/man2/mount.2.html*/
+	mount("none", "/", NULL, MS_REC|MS_PRIVATE, NULL); // make mount point private.	
+	/*重新mount proc文件系统到/proc下 */
 	mount("proc", "/proc", "proc", 0, NULL); //or system("mount -t proc proc /proc");
 	/*直接执行一个shell，以便我们观察这个进程空间里面的资源是否被隔离了*/
 	/*http://man7.org/linux/man-pages/man3/exec.3.html*/
